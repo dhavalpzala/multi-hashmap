@@ -1,0 +1,20 @@
+{
+  "name": "multi-hashmap",
+  "version": "0.0.1",
+  "description": "Multiple hashmap",
+  "main": "multi-hashmap.js",
+  "scripts": {
+    "build": "tsc multi-hashmap.ts --module commonjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "tslint": "next",
+    "typescript": "^2.1.0-dev.20160816"
+  },
+  "repository" : {
+    "type": "git",
+    "url": "https://github.com/dhavalpzala/multi-hashmap.git"
+  },
+  "author": "dhavalpzala <dhaval.zala@live.com>",
+  "license": "ISC"
+}
