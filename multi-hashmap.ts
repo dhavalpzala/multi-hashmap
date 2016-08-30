@@ -1,4 +1,4 @@
-class MultiHashMap {
+export class MultiHashMap {
     private _noOfDimensions: number = 0
     private _dimensions: string[]
     private _records = []
@@ -16,7 +16,7 @@ class MultiHashMap {
         this._noOfDimensions = this._dimensions.length
     }
 
-    add(...params) {
+    insert(...params) {
         if (params.length > this._noOfDimensions) {
             throw new Error('Extra arguments are passed')
         }

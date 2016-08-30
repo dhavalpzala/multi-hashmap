@@ -4,14 +4,27 @@
   "description": "Multiple hashmap",
   "main": "multi-hashmap.js",
   "scripts": {
-    "build": "tsc multi-hashmap.ts --module commonjs",
+    "prebuild": "tsc multi-hashmap.ts --module umd",
+    "build": "browserify test.js -o bundle.js -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "hashmap",
+    "map",
+    "object",
+    "array",
+    "javascript",
+    "nodejs",
+    "node",
+    "browser",
+    "multiple",
+    "multi"
+  ],
   "devDependencies": {
     "tslint": "next",
     "typescript": "^2.1.0-dev.20160816"
   },
-  "repository" : {
+  "repository": {
     "type": "git",
     "url": "https://github.com/dhavalpzala/multi-hashmap.git"
   },
