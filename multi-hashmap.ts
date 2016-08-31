@@ -1,4 +1,4 @@
-export class MultiHashMap {
+export default class MultiHashMap {
     private _noOfDimensions: number = 0
     private _dimensions: string[]
     private _records = []
