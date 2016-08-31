@@ -63,6 +63,5 @@
         };
         return MultiHashMap;
     }());
-    exports.__esModule = true;
-    exports["default"] = MultiHashMap;
+    exports.MultiHashMap = MultiHashMap;
 });
