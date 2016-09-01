@@ -59,6 +59,9 @@
             }
             return [];
         };
+        MultiHashMap.prototype.getRecords = function () {
+            return this._records;
+        };
         MultiHashMap.prototype.hasContains = function (hashMap, key) {
         };
         return MultiHashMap;

@@ -56,6 +56,10 @@ export class MultiHashMap {
         return []
     }
 
+    getRecords() {
+      return this._records
+    }
+
     private hasContains(hashMap, key) {
 
     }

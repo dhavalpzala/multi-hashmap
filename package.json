@@ -4,9 +4,7 @@
   "description": "Multiple hashmap",
   "main": "multi-hashmap.js",
   "scripts": {
-    "prebuild": "tsc multi-hashmap.ts --module umd",
-    "build": "browserify test.js -o bundle.js -d",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc && ava --verbose"
   },
   "keywords": [
     "hashmap",
@@ -21,8 +19,9 @@
     "multi"
   ],
   "devDependencies": {
+    "ava": "^0.16.0",
     "tslint": "next",
-    "typescript": "^2.1.0-dev.20160816"
+    "typescript": "^1.8.10"
   },
   "repository": {
     "type": "git",
