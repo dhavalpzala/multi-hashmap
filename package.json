@@ -16,7 +16,8 @@
     "node",
     "browser",
     "multiple",
-    "multi"
+    "multi",
+    "multi-hashmap"
   ],
   "devDependencies": {
     "ava": "^0.16.0",

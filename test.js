@@ -5,7 +5,7 @@ test('should import MultiHashMap class',(t) => {
     t.is(typeof MultiHashMap === 'function', true);
 });
 
-test('should insert records',(t) => {
+test('Approach 1: should insert records',(t) => {
     var players = new MultiHashMap('id', 'firstName', 'lastName', 'sport');
     players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
     players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
@@ -14,7 +14,7 @@ test('should insert records',(t) => {
     t.deepEqual(players.getRecords(), [[1, 'Sachin', 'Tendulkar', 'cricket'], [2, 'Pusarla', 'Sindhu', 'badminton'], [3, 'Roger', 'Federer', 'tennis']]);
 });
 
-test('should find records',(t) => {
+test('Approach 1: should find records',(t) => {
     var players = new MultiHashMap('id', 'firstName', 'lastName', 'sport');
     players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
     players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
@@ -23,4 +23,23 @@ test('should find records',(t) => {
     t.deepEqual(players.find('id', 2), [2, 'Pusarla', 'Sindhu', 'badminton']);
     t.deepEqual(players.find('firstName', 'Sachin'), [1, 'Sachin', 'Tendulkar', 'cricket']);
     t.deepEqual(players.find('sport', 'tennis'), [3, 'Roger', 'Federer', 'tennis']);
+});
+
+test('Approach 2: should insert records',(t) => {
+    var players = new MultiHashMap(['id', 'firstName'], ['lastName', 'sport']);
+    players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
+    players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
+    players.insert(3, 'Roger', 'Federer', 'tennis');
+
+    t.deepEqual(players.getRecords(), [[1, 'Sachin', 'Tendulkar', 'cricket'], [2, 'Pusarla', 'Sindhu', 'badminton'], [3, 'Roger', 'Federer', 'tennis']]);
+});
+
+test('Approach 2: should find records',(t) => {
+    var players = new MultiHashMap(['id', 'firstName'], ['lastName', 'sport']);
+    players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
+    players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
+    players.insert(3, 'Roger', 'Federer', 'tennis');
+
+    t.deepEqual(players.find('id', 2), [2, 'Pusarla', 'Sindhu', 'badminton']);
+    t.deepEqual(players.find('firstName', 'Sachin'), [1, 'Sachin', 'Tendulkar', 'cricket']);
 });

@@ -9,21 +9,36 @@
     "use strict";
     var MultiHashMap = (function () {
         function MultiHashMap() {
-            var dimensions = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                dimensions[_i - 0] = arguments[_i];
-            }
             this._noOfDimensions = 0;
+            this._dimensions = [];
             this._records = [];
             this._indexMaps = [];
-            for (var index = 0; index < dimensions.length; index++) {
-                this._indexMaps.push({
-                    key: dimensions[index],
-                    map: Object.create(null)
-                });
+            if (arguments.length === 0) {
+                throw new Error('Please provide atleast one dimesion');
             }
-            this._dimensions = dimensions;
-            this._noOfDimensions = this._dimensions.length;
+            else {
+                var firstArg = arguments[0];
+                if (typeof firstArg === 'string') {
+                    for (var index = 0; index < arguments.length; index++) {
+                        this._indexMaps.push({
+                            key: arguments[index],
+                            map: Object.create(null)
+                        });
+                        this._dimensions.push(arguments[index]);
+                    }
+                    this._noOfDimensions = this._dimensions.length;
+                }
+                else if (typeof firstArg === 'object') {
+                    for (var index = 0; index < firstArg.length; index++) {
+                        this._indexMaps.push({
+                            key: firstArg[index],
+                            map: Object.create(null)
+                        });
+                        this._dimensions.push(firstArg[index]);
+                    }
+                    this._noOfDimensions = this._dimensions.length + (typeof arguments[1] === 'object' ? arguments[1].length : 0);
+                }
+            }
         }
         MultiHashMap.prototype.insert = function () {
             var params = [];
@@ -37,10 +52,12 @@
             for (var index = 0; index < params.length; index++) {
                 var key = params[index];
                 if (key) {
-                    var hashMap = this._indexMaps[index].map;
-                    if (hashMap) {
-                        item[index] = key;
-                        hashMap[key] = item;
+                    item[index] = key;
+                    if (index < this._dimensions.length) {
+                        var hashMap = this._indexMaps[index].map;
+                        if (hashMap) {
+                            hashMap[key] = item;
+                        }
                     }
                 }
             }
@@ -51,7 +68,7 @@
         MultiHashMap.prototype.find = function (dimension, value) {
             var index = this._dimensions.indexOf(dimension);
             if (index === -1) {
-                throw new Error('Incorrect dimension');
+                throw new Error('Invalid dimension');
             }
             var hashMap = this._indexMaps[index].map;
             if (hashMap && hashMap[value]) {
