@@ -11,11 +11,14 @@ Using [npm](https://npmjs.org/package/multi-hashmap):
     $ npm install multi-hashmap
 
 ### Constructor
-- `new MultiHashMap(dimension1: string, dimension2: string, ...)` define the dimesions in the constructor.
+- `new MultiHashMap(dimension1: string, dimension2: string, ...)` Define the dimensions in the constructor.
+   
+- `new MultiHashMap([mappedDim1: string, mappedDim2: string, ...], [nonMappedDim1: string, nonMappedDim2: string, ...])`       Define the mapped and non mapped dimensions in the constructor. Non mapped dimensions are not valid for find method.
 
 ### Methods
-- `insert(value1:*, value2:*, ...) : void` insert the records
-- `find(dimension: string, value: *) : []` returns the records associated with that dimension and value.
+- `insert(value1:*, value2:*, ...) : void` Insert the records
+- `find(dimension: string, value: *) : []` Returns the records associated with that dimension and value.
+- `getRecords : []` Returns all the records.
 
 ### Example
 ```js
@@ -30,6 +33,22 @@ players.find('id', 2) // --> [2, 'Pusarla', 'Sindhu', 'badminton']
 players.find('firstName', 'Sachin') // --> [1, 'Sachin', 'Tendulkar', 'cricket']
 players.find('sport', 'tennis') // --> [3, 'Roger', 'Federer', 'tennis']
 ```
+
+```js
+var MultiHashMap = require('multi-hashmap').MultiHashMap;
+
+// id and firstName are mapped dimensions. lastName and sport are non mapped dimensions
+
+var players = new MultiHashMap(['id', 'firstName'], ['lastName', 'sport']);
+players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
+players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
+players.insert(3, 'Roger', 'Federer', 'tennis');
+
+players.find('id', 2) // --> [2, 'Pusarla', 'Sindhu', 'badminton']
+players.find('firstName', 'Sachin') // --> [1, 'Sachin', 'Tendulkar', 'cricket']
+players.find('sport', 'tennis') // --> Error: Invalid dimension
+```
+
 ### License
 
 ```
