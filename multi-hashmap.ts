@@ -2,7 +2,7 @@ export class MultiHashMap {
   private _noOfDimensions: number = 0
   private _dimensions: string[] = []
   private _records = []
-  private _indexMaps: { key: string, map: Object[] }[] = []
+  private _indexMaps: { key: string, map: Object }[] = []
 
   constructor() {
     if (arguments.length === 0) {
@@ -51,7 +51,8 @@ export class MultiHashMap {
           const hashMap = this._indexMaps[index].map
 
           if (hashMap) {
-            hashMap[key] = item
+            hashMap[key] = hashMap[key] || []
+            hashMap[key].push(item)
           }
         }
       }
@@ -63,6 +64,11 @@ export class MultiHashMap {
   }
 
   find(dimension: string, value: any) {
+    let results = this.findAll(dimension, value)
+    return results && results.length > 0 ? results[0] : null
+  }
+
+  findAll(dimension: string, value: any) {
     const index = this._dimensions.indexOf(dimension)
     if (index === -1) {
       throw new Error('Invalid dimension')
@@ -70,18 +76,14 @@ export class MultiHashMap {
 
     const hashMap = this._indexMaps[index].map
 
-    if (hashMap && hashMap[value]) {
+    if (hashMap && hashMap[value] && hashMap[value].length > 0) {
       return hashMap[value]
+    } else {
+      return null
     }
-
-    return []
   }
 
   getRecords() {
     return this._records
-  }
-
-  private hasContains(hashMap, key) {
-
   }
 }

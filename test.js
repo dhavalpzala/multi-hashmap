@@ -25,6 +25,16 @@ test('Approach 1: should find records',(t) => {
     t.deepEqual(players.find('sport', 'tennis'), [3, 'Roger', 'Federer', 'tennis']);
 });
 
+test('Approach 1: should find all records',(t) => {
+    var players = new MultiHashMap('id', 'firstName', 'lastName', 'sport');
+    players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
+    players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
+    players.insert(3, 'Roger', 'Federer', 'tennis');
+    players.insert(4, 'Saina', 'Nehwal', 'badminton');
+
+    t.deepEqual(players.findAll('sport', 'badminton'), [[2, 'Pusarla', 'Sindhu', 'badminton'], [4, 'Saina', 'Nehwal', 'badminton']]);
+});
+
 test('Approach 2: should insert records',(t) => {
     var players = new MultiHashMap(['id', 'firstName'], ['lastName', 'sport']);
     players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
@@ -42,4 +52,14 @@ test('Approach 2: should find records',(t) => {
 
     t.deepEqual(players.find('id', 2), [2, 'Pusarla', 'Sindhu', 'badminton']);
     t.deepEqual(players.find('firstName', 'Sachin'), [1, 'Sachin', 'Tendulkar', 'cricket']);
+});
+
+test('Approach 2: should find all records',(t) => {
+    var players = new MultiHashMap(['id', 'firstName'], ['lastName', 'sport']);
+    players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
+    players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
+    players.insert(3, 'Roger', 'Federer', 'tennis');
+    players.insert(4, 'Sachin', 'Baby', 'cricket');
+
+    t.deepEqual(players.findAll('firstName', 'Sachin'), [[1, 'Sachin', 'Tendulkar', 'cricket'], [4, 'Sachin', 'Baby', 'cricket']]);
 });

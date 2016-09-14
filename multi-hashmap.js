@@ -56,7 +56,8 @@
                     if (index < this._dimensions.length) {
                         var hashMap = this._indexMaps[index].map;
                         if (hashMap) {
-                            hashMap[key] = item;
+                            hashMap[key] = hashMap[key] || [];
+                            hashMap[key].push(item);
                         }
                     }
                 }
@@ -66,20 +67,24 @@
             }
         };
         MultiHashMap.prototype.find = function (dimension, value) {
+            var results = this.findAll(dimension, value);
+            return results && results.length > 0 ? results[0] : null;
+        };
+        MultiHashMap.prototype.findAll = function (dimension, value) {
             var index = this._dimensions.indexOf(dimension);
             if (index === -1) {
                 throw new Error('Invalid dimension');
             }
             var hashMap = this._indexMaps[index].map;
-            if (hashMap && hashMap[value]) {
+            if (hashMap && hashMap[value] && hashMap[value].length > 0) {
                 return hashMap[value];
             }
-            return [];
+            else {
+                return null;
+            }
         };
         MultiHashMap.prototype.getRecords = function () {
             return this._records;
-        };
-        MultiHashMap.prototype.hasContains = function (hashMap, key) {
         };
         return MultiHashMap;
     }());
