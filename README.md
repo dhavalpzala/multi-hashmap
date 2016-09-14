@@ -1,5 +1,7 @@
 # MultiHashMap
 
+[![Build Status](https://travis-ci.org/dhavalpzala/multi-hashmap.svg?branch=master)](https://travis-ci.org/dhavalpzala/multi-hashmap)
+
 [multi-hashmap](https://npmjs.org/package/multi-hashmap) package provides a linking between multiple hashmaps and gives a single entity. It gives fast searching mechanism as internally it uses hashmap and its similar to add indexing to database column for quick search.
 
 ##Getting Started
@@ -18,7 +20,7 @@ Using [npm](https://npmjs.org/package/multi-hashmap):
 
 ### Constructors
 - `new MultiHashMap(dimension1: string, dimension2: string, ...)` Define the dimensions in the constructor.
-   
+
 - `new MultiHashMap([mappedDim1: string, mappedDim2: string, ...], [nonMappedDim1: string, nonMappedDim2: string, ...])`       Define the mapped and non mapped dimensions in the constructor. Non mapped dimensions are not valid for find method.
 
 ### Methods
