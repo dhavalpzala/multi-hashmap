@@ -1,8 +1,14 @@
 # MultiHashMap
 
-[multi-hashmap](https://npmjs.org/package/multi-hashmap) package provides a linking between multiple hashmaps and gives a single entity.
+[multi-hashmap](https://npmjs.org/package/multi-hashmap) package provides a linking between multiple hashmaps and gives a single entity. It gives fast searching mechanism as internally it uses hashmap and its similar to add indexing to database column for quick search.
 
 ##Getting Started
+
+### Why to use
+
+ - Provides faster search on data (similar to database indexing concept).
+ - Easy to configure mapped and non mapped dimensions. So, Its internal memory space is optimized.
+ - Alternative to browser local database table.
 
 ### Installation
 
@@ -10,17 +16,18 @@ Using [npm](https://npmjs.org/package/multi-hashmap):
 
     $ npm install multi-hashmap
 
-### Constructor
+### Constructors
 - `new MultiHashMap(dimension1: string, dimension2: string, ...)` Define the dimensions in the constructor.
    
 - `new MultiHashMap([mappedDim1: string, mappedDim2: string, ...], [nonMappedDim1: string, nonMappedDim2: string, ...])`       Define the mapped and non mapped dimensions in the constructor. Non mapped dimensions are not valid for find method.
 
 ### Methods
 - `insert(value1:*, value2:*, ...) : void` Insert the records
-- `find(dimension: string, value: *) : []` Returns the records associated with that dimension and value.
+- `find(dimension: string, value: *) : any` Returns the first record associated with that dimension and value.
+- `findAll(dimension: string, value: *) : []` Returns the all records associated with that dimension and value.
 - `getRecords : []` Returns all the records.
 
-### Example
+### Examples
 ```js
 var MultiHashMap = require('multi-hashmap').MultiHashMap;
 
@@ -28,10 +35,13 @@ var players = new MultiHashMap('id', 'firstName', 'lastName', 'sport');
 players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
 players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
 players.insert(3, 'Roger', 'Federer', 'tennis');
+players.insert(4, 'Saina', 'Nehwal', 'badminton');
 
 players.find('id', 2) // --> [2, 'Pusarla', 'Sindhu', 'badminton']
 players.find('firstName', 'Sachin') // --> [1, 'Sachin', 'Tendulkar', 'cricket']
-players.find('sport', 'tennis') // --> [3, 'Roger', 'Federer', 'tennis']
+players.find('sport', 'badminton') // --> [2, 'Pusarla', 'Sindhu', 'badminton']
+players.findAll('firstName', 'Sachin') // --> [[1, 'Sachin', 'Tendulkar', 'cricket']]
+players.findAll('sport', 'badminton') // --> [[2, 'Pusarla', 'Sindhu', 'badminton'], [4, 'Saina', 'Nehwal', 'badminton']]
 ```
 
 ```js
@@ -43,12 +53,18 @@ var players = new MultiHashMap(['id', 'firstName'], ['lastName', 'sport']);
 players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
 players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
 players.insert(3, 'Roger', 'Federer', 'tennis');
+players.insert(4, 'Saina', 'Nehwal', 'badminton');
 
 players.find('id', 2) // --> [2, 'Pusarla', 'Sindhu', 'badminton']
 players.find('firstName', 'Sachin') // --> [1, 'Sachin', 'Tendulkar', 'cricket']
 players.find('sport', 'tennis') // --> Error: Invalid dimension
+players.findAll('sport', 'tennis') // --> Error: Invalid dimension
 ```
+### Wants to contribute
 
+PRs are very much welcome and appreciated.
+
+If you would like to contribute, you can get in touch with me at dhaval.zala@live.com
 ### License
 
 ```
