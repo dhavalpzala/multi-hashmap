@@ -83,7 +83,13 @@ export class MultiHashMap {
     }
   }
 
-  getRecords() {
+  /**
+   * Returns all the records in the MultiHashMap.
+   * 
+   * @returns An array of all the records.
+   * @memberOf MultiHashMap
+   */
+  getAll(): Array<any> {
     return this._records
   }
 }

@@ -11,7 +11,7 @@ test('Approach 1: should insert records',(t) => {
     players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
     players.insert(3, 'Roger', 'Federer', 'tennis');
 
-    t.deepEqual(players.getRecords(), [[1, 'Sachin', 'Tendulkar', 'cricket'], [2, 'Pusarla', 'Sindhu', 'badminton'], [3, 'Roger', 'Federer', 'tennis']]);
+    t.deepEqual(players.getAll(), [[1, 'Sachin', 'Tendulkar', 'cricket'], [2, 'Pusarla', 'Sindhu', 'badminton'], [3, 'Roger', 'Federer', 'tennis']]);
 });
 
 test('Approach 1: should find records',(t) => {
@@ -41,7 +41,7 @@ test('Approach 2: should insert records',(t) => {
     players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
     players.insert(3, 'Roger', 'Federer', 'tennis');
 
-    t.deepEqual(players.getRecords(), [[1, 'Sachin', 'Tendulkar', 'cricket'], [2, 'Pusarla', 'Sindhu', 'badminton'], [3, 'Roger', 'Federer', 'tennis']]);
+    t.deepEqual(players.getAll(), [[1, 'Sachin', 'Tendulkar', 'cricket'], [2, 'Pusarla', 'Sindhu', 'badminton'], [3, 'Roger', 'Federer', 'tennis']]);
 });
 
 test('Approach 2: should find records',(t) => {
