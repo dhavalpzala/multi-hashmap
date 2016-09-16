@@ -83,7 +83,13 @@
                 return null;
             }
         };
-        MultiHashMap.prototype.getRecords = function () {
+        /**
+         * Returns all the records in the MultiHashMap.
+         *
+         * @returns An array of all the records.
+         * @memberOf MultiHashMap
+         */
+        MultiHashMap.prototype.getAll = function () {
             return this._records;
         };
         return MultiHashMap;
