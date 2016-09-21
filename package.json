@@ -1,6 +1,6 @@
 {
   "name": "multi-hashmap",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Multiple hashmap",
   "main": "multi-hashmap.js",
   "scripts": {
