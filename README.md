@@ -27,7 +27,7 @@ Using [npm](https://npmjs.org/package/multi-hashmap):
 - `insert(value1:*, value2:*, ...) : void` Insert the records
 - `find(dimension: string, value: *) : any` Returns the first record associated with that dimension and value.
 - `findAll(dimension: string, value: *) : []` Returns the all records associated with that dimension and value.
-- `getRecords : []` Returns all the records.
+- `getAll : []` Returns all the records.
 
 ### Examples
 ```js
