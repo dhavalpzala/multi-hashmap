@@ -1,5 +1,5 @@
 import test from 'ava';
-import { MultiHashMap } from './multi-hashmap';
+import { MultiHashMap } from '../multi-hashmap';
 
 test('should import MultiHashMap class',(t) => {
     t.is(typeof MultiHashMap === 'function', true);

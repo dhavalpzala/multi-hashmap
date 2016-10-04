@@ -4,7 +4,7 @@
   "description": "Multiple hashmap",
   "main": "multi-hashmap.js",
   "scripts": {
-    "test": "tsc && ava --verbose"
+    "test": "tsc && ava tests/test.js --verbose"
   },
   "keywords": [
     "hashmap",
@@ -21,6 +21,7 @@
   ],
   "devDependencies": {
     "ava": "^0.16.0",
+    "benchmark": "^2.1.1",
     "tslint": "next",
     "typescript": "^1.8.10"
   },
