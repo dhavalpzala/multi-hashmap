@@ -62,6 +62,14 @@ players.find('firstName', 'Sachin') // --> [1, 'Sachin', 'Tendulkar', 'cricket']
 players.find('sport', 'tennis') // --> Error: Invalid dimension
 players.findAll('sport', 'tennis') // --> Error: Invalid dimension
 ```
+### Benchmarks using benchmark.js
+```
+Benchmark: insert 1000 records (each has 10 columns)  x 129 ops/sec ±22.10% (34 runs sampled)
+Benchmark: get all 1000 records (each has 10 columns) x 69,918,627 ops/sec ±3.33% (67 runs sampled)
+Benchmark: find last record                           x 6,341,050 ops/sec ±2.99% (72 runs sampled)
+Benchmark: find first record                          x 30,428,729 ops/sec ±1.42% (73 runs sampled)
+Benchmark: find random record                         x 18,452,618 ops/sec ±3.35% (74 runs sampled)
+```
 ### Wants to contribute
 
 PRs are very much welcome and appreciated.
