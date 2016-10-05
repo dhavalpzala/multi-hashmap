@@ -4,7 +4,9 @@
   "description": "Multiple hashmap",
   "main": "multi-hashmap.js",
   "scripts": {
-    "test": "tsc && ava tests/test.js --verbose"
+    "build": "tsc",
+    "test": "npm run build && ava tests/test.js --verbose",
+    "performance": "node tests/performance-test.js"
   },
   "keywords": [
     "hashmap",
@@ -30,5 +32,5 @@
     "url": "https://github.com/dhavalpzala/multi-hashmap.git"
   },
   "author": "dhavalpzala <dhaval.zala@live.com>",
-  "license": "Apache-2.0"
+  "license": "MIT"
 }
