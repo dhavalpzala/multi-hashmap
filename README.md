@@ -71,8 +71,7 @@ Benchmark: find first record                          x 30,428,729 ops/sec ±1.4
 Benchmark: find random record                         x 18,452,618 ops/sec ±3.35% (74 runs sampled)
 ```
 ### Want to contribute
-
-PRs are very much welcome and appreciated.
+Check our [developer guide](DEVELOPMENT.md) to get started. PRs are very much welcome and appreciated.
 
 If you would like to contribute, you can get in touch with me at dhaval.zala@live.com
 
