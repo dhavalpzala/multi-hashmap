@@ -92,6 +92,31 @@
         MultiHashMap.prototype.getAll = function () {
             return this._records;
         };
+        MultiHashMap.prototype.remove = function (record) {
+            var _this = this;
+            if (record && record.length !== this._dimensions.length) {
+                throw new Error('Invalid Record');
+            }
+            var records = this._records.filter(function (recordItem) {
+                return recordItem.every(function (element, index) { return element === record[index]; });
+            });
+            // remove record with their mapping
+            records.forEach(function (recordItem) {
+                _this._dimensions.forEach(function (dimesion, index) {
+                    var hashMap = _this._indexMaps[index].map, value = recordItem[index];
+                    if (hashMap && hashMap[value] && hashMap[value].length > 0) {
+                        var itemIndex = hashMap[value].indexOf(recordItem);
+                        if (itemIndex > -1) {
+                            hashMap[value].splice(itemIndex, 1);
+                        }
+                    }
+                });
+                var recordIndex = _this._records.indexOf(recordItem);
+                if (recordIndex > -1) {
+                    _this._records.splice(recordIndex, 1);
+                }
+            });
+        };
         return MultiHashMap;
     }());
     exports.MultiHashMap = MultiHashMap;

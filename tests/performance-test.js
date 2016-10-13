@@ -18,7 +18,13 @@ var firstColumn = columns[0],
   randomColumn = columns[Math.floor(Math.random() * columns.length)],
   firstValue = mockData[0][firstColumn],
   lastValue = mockData[mockData.length - 1][lastColumn],
-  randomValue = mockData[Math.floor(Math.random() * mockData.length)][randomColumn];
+  randomValue = mockData[Math.floor(Math.random() * mockData.length)][randomColumn],
+  removeRandomObj = mockData[Math.floor(Math.random() * mockData.length)],
+  removeRandomData = [];
+
+for (var key in removeRandomObj) {
+  removeRandomData.push(removeRandomObj[key]);
+}
 
 // add tests
 suite.add('insert ' + mockData.length + ' records (each has '+ columns.length +' columns)', function() {
@@ -41,6 +47,9 @@ suite.add('insert ' + mockData.length + ' records (each has '+ columns.length +'
   })
   .add('find random record', function() {
     multiHashMap.find(randomColumn, randomValue);
+  })
+  .add('remove random record', function() {
+    multiHashMap.remove(removeRandomData);
   })
   // add listeners
   .on('cycle', function(event) {

@@ -63,3 +63,19 @@ test('Approach 2: should find all records',(t) => {
 
     t.deepEqual(players.findAll('firstName', 'Sachin'), [[1, 'Sachin', 'Tendulkar', 'cricket'], [4, 'Sachin', 'Baby', 'cricket']]);
 });
+
+test('should remove records',(t) => {
+    var players = new MultiHashMap('id', 'firstName', 'lastName', 'sport');
+    players.insert(1, 'Sachin', 'Tendulkar', 'cricket');
+    players.insert(2, 'Pusarla', 'Sindhu', 'badminton');
+    players.insert(3, 'Roger', 'Federer', 'tennis');
+    players.insert(4, 'Saina', 'Nehwal', 'badminton');
+
+    t.deepEqual(players.find('id', 3), [3, 'Roger', 'Federer', 'tennis']);
+
+    players.remove([3, 'Roger', 'Federer', 'tennis']);
+    players.remove([1, 'Sachin', 'Tendulkar', 'cricket']);
+
+    t.deepEqual(players.getAll(), [[2, 'Pusarla', 'Sindhu', 'badminton'], [4, 'Saina', 'Nehwal', 'badminton']]);
+    t.deepEqual(players.find('id', 3), null);
+});

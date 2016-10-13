@@ -85,11 +85,41 @@ export class MultiHashMap {
 
   /**
    * Returns all the records in the MultiHashMap.
-   * 
+   *
    * @returns An array of all the records.
    * @memberOf MultiHashMap
    */
   getAll(): Array<any> {
     return this._records
+  }
+
+  remove(record: Array<any>) {
+    if (record && record.length !== this._dimensions.length) {
+      throw new Error('Invalid Record')
+    }
+
+    let records = this._records.filter(recordItem => {
+      return recordItem.every((element, index) => element === record[index])
+    })
+
+    // remove record with their mapping
+    records.forEach((recordItem) => {
+      this._dimensions.forEach((dimesion, index) => {
+        let hashMap = this._indexMaps[index].map,
+          value = recordItem[index]
+
+        if (hashMap && hashMap[value] && hashMap[value].length > 0) {
+          let itemIndex  = hashMap[value].indexOf(recordItem)
+          if(itemIndex > -1) {
+            hashMap[value].splice(itemIndex, 1)
+          }
+        }
+      })
+
+      let recordIndex = this._records.indexOf(recordItem)
+      if (recordIndex > -1) {
+        this._records.splice(recordIndex, 1)
+      }
+    })
   }
 }

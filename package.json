@@ -5,7 +5,7 @@
   "main": "multi-hashmap.js",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && ava tests/test.js --verbose",
+    "test": "npm run build && ava tests/unit-test.js --verbose",
     "performance": "node tests/performance-test.js"
   },
   "keywords": [
